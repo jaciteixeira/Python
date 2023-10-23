@@ -16,13 +16,23 @@ def conta_palavras(frase):
     return palavras
 
 def acha_maior(lista):
-    indice_maior = 0
-    maior = lista[indice_maior]
-    for i in range(len(lista)):
-        if lista[i] > maior:
-            maior = lista[i]
-            indice_maior = i
-    return indice_maior
+    try:
+        if type(lista) is not list:
+            msg = f"{lista} deveria ser uma lista"
+            raise TypeError
+        for i in lista:
+            msg = f"o valor {i} dentro da lista não é um numero"
+            if type(i) not in [int,float]:
+                raise TypeError
+        indice_maior = 0
+        maior = lista[indice_maior]
+        for i in range(len(lista)):
+            if lista[i] > maior:
+                maior = lista[i]
+                indice_maior = i
+        return indice_maior
+    except TypeError:
+        raise TypeError(msg)
 
 def acha_menor(lista):
     indice_menor = 0
@@ -73,7 +83,7 @@ for value in dic['hp']:
     print(value)
 
 '''
-while True:
+'''while True:
     msg = 'O que voce gostaria de fazer ? '
     opcao = obriga_opcao(['cadastrar','remover','info mais potente','info menos potente','sair'],msg)
     if opcao == 'cadastrar':
@@ -89,4 +99,7 @@ while True:
         for key in dic:
             print(f"{key} : {dic[key][local_menos_potente]}")
     else:
-        break
+        break'''
+
+lista=[1,3,5,6,4,9,7]
+print(acha_maior(lista))
